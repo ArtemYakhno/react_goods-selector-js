@@ -19,7 +19,10 @@ export const App = () => {
   const [selectedGood, setSelectedGood] = useState('Jam');
 
   const handleClearSelection = () => setSelectedGood('');
-  const handleSelectGood = good => setSelectedGood(good);
+  const handleSelectGood = event => {
+    const good = event.currentTarget.dataset.good;
+    setSelectedGood(good);
+  };
 
   return (
     <main className="section container">
@@ -60,7 +63,8 @@ export const App = () => {
                   ) : (
                     <button
                       data-cy="AddButton"
-                      onClick={() => handleSelectGood(good)}
+                      data-good={good}
+                      onClick={handleSelectGood}
                       type="button"
                       className="button"
                     >
